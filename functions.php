@@ -1,13 +1,13 @@
 <?php
 
-function give_head(){
+function give_head($name){
 echo("
 <!DOCTYPE html>
 <html lang='en'>
 
 <head>
 	<meta charset='utf-8'>
-	<title>PhotoShow + Bootstrap</title>
+	<title>$name</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<meta name='description' content=''>
 	<meta name='author' content='Thibaud Rohmer'>
@@ -24,7 +24,7 @@ echo("
 ");
 }
 
-function navbar($account,$dir=false,$path=false){
+function navbar($name,$account,$dir=false,$path=false){
 	echo ("
    <div class='navbar navbar-fixed-top'>
 	  <div class='navbar-inner'>
@@ -34,7 +34,7 @@ function navbar($account,$dir=false,$path=false){
 			<span class='icon-bar'></span>
 			<span class='icon-bar'></span>
 		  </a>
-		  <a class='brand' href='.'>PhotoShow + Bootstrap</a>
+		  <a class='brand' href='.'>$name</a>
 		  <div class='nav-collapse'>
 		  ");
 	if($dir){
@@ -154,6 +154,10 @@ function files($files,$path,$page){
 }
 
 function pagination($files,$dir,$page){
+	if(sizeof($files) < IMAGES_PER_PAGE){
+		return;
+	}
+
 	$d = urlencode($dir);
 	echo "<div class='pagination'>\n<ul>";
 	for($i=0;$i<=sizeof($files)/IMAGES_PER_PAGE;$i++){

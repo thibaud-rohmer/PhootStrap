@@ -48,11 +48,14 @@ if(isset($_GET['page'])){
 $dirs	= $client->list_dirs($key,$dir);
 $files	= $client->list_files($key,$dir);
 
-give_head();
+// OUTPUT 
+
+give_head($site_name);
+
 if(DIRS_IN_NAVBAR){
-	navbar($account,$dirs,$dir);
+	navbar($site_name,$account,$dirs,$dir);
 }else{
-	navbar($account);
+	navbar($site_name,$account);
 	dirs($dirs,$dir);
 }
 

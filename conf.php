@@ -1,7 +1,10 @@
 <?php
 
 // Server address
-$server = 'http://photo.rohmer.me/';
+$server = 'http://localhost/';
+
+// Site name
+$site_name = 'PhootStrap';
 
 // Timezone
 $timezone = 'Europe/Dublin';
