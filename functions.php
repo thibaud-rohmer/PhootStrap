@@ -13,12 +13,13 @@ echo("
 	<meta name='author' content='Thibaud Rohmer'>
 
 	<link href='./css/bootstrap.css' rel='stylesheet'>
-	<link href='./css/bootstrap-responsive.css' rel='stylesheet'>
 	<style type='text/css'>
 	body {
+		padding-top: 60px;
 		padding-bottom: 40px;      
 	}
 	</style>
+	<link href='./css/bootstrap-responsive.css' rel='stylesheet'>
 </head>
 <body>
 ");
@@ -159,11 +160,11 @@ function pagination($files,$dir,$page){
 	}
 
 	$d = urlencode($dir);
-	echo "<div class='pagination'>\n<ul>";
+	echo "<span class='pagination'>\n<ul>";
 	for($i=0;$i<=sizeof($files)/IMAGES_PER_PAGE;$i++){
 		echo "<li><a href='?page=$i&dir=$d'>$i</a></li>\n";
 	}
-	echo "</ul></div>";
+	echo "</ul></span>";
 }
 
 function finish_him(){
