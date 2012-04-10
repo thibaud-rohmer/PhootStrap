@@ -5,6 +5,9 @@ require_once("XRL/Autoload.php");
 require_once("conf.php");
 require_once("functions.php");
 
+define(DIRS_IN_NAVBAR,$nav_in_top_bar);
+define(IMAGES_PER_PAGE,$images_per_page);
+
 $client     = new XRL_Client($server,$timezone);
 $client["XRL_DecoderFactoryInterface"] = new XRL_NonValidatingDecoderFactory();
 
@@ -36,18 +39,30 @@ if(isset($_GET['dir'])){
 	$dir = ".";
 }
 
+if(isset($_GET['page'])){
+	$page = $_GET['page'];
+}else{
+	$page = 0;
+}
+
 $dirs	= $client->list_dirs($key,$dir);
 $files	= $client->list_files($key,$dir);
 
 give_head();
-navbar($account);
-dirs($dirs,$dir);
+if(DIRS_IN_NAVBAR){
+	navbar($account,$dirs,$dir);
+}else{
+	navbar($account);
+	dirs($dirs,$dir);
+}
+
 if(isset($_GET['a']) && $_GET['a']=="login"){
 	login();
 }else if($_GET['a'] == "who"){
 	account($account);
 }else{
-	files($files,$dir);
+	files($files,$dir,$page);
+	pagination($files,$dir,$page);
 }
 finish_him();
 ?>
